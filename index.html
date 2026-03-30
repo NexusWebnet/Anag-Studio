@@ -31,6 +31,40 @@
       overflow-x: hidden;
     }
 
+    
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
+    }
+
+
+    .preloader-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+
+
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 8px solid rgba(255,204,0,0.2);
+      border-top: 8px solid var(--yellow);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+
     /* Top Navigation */
     .top-nav {
       position: fixed;
@@ -75,8 +109,42 @@
       font-weight: 600;
     }
 
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: white;
+    }
+
     .auth-icon {
       font-size: 1.4rem;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: var(--dark);
+      z-index: 1050;
+      transition: left 0.4s ease;
+      padding: 6rem 2rem 2rem;
+    }
+
+    .mobile-menu.open {
+      left: 0;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 1.2rem 0;
+      font-size: 1.7rem;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     /* Sidebar (vertical yellow bar) */
@@ -92,6 +160,36 @@
       flex-direction: column;
       align-items: center;
       padding-top: 2rem;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 92%;
+      max-height: 92vh;
+      border-radius: 12px;
+      box-shadow: 0 0 60px rgba(255,204,0,0.6);
     }
 
     /* Hero Section */
@@ -190,7 +288,7 @@
 }
 
 .service-list {
-  text-align: left;
+  text-align: right;
   margin-bottom: 2rem;
 }
 
@@ -297,10 +395,11 @@
 
     @media (max-width: 768px) {
       .sidebar { display: none; } /* hide sidebar on mobile → convert to hamburger later */
-      .hero { padding-left: 5%; padding-right: 5%; flex-direction: column; text-align: center; }
+      .hero { padding-left: 5%; padding-top: 5%; padding-right: 5%; flex-direction: column; text-align: center; }
       .hero-content { max-width: 100%; }
       .hero-image-container { position: relative; width: 90%; margin: 3rem auto 0; }
       .top-nav { padding-left: 5%; padding-right: 5%; }
+      .buttons { justify-content: space-between;}
     }
 
 
@@ -545,6 +644,12 @@
     animation: pulse 2s infinite;
   }
 
+  @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .sidebar { display: none; }
+      .top-nav { padding-left: 5%; padding-right: 5%; }
+    }
+
   @keyframes pulse {
     0% { transform: scale(1); }
     70% { transform: scale(1.12); }
@@ -569,17 +674,33 @@
 
 
     .services {
-      margin: 5.5rem 10rem 3.5rem;
+      align-items: left;
+      margin: 5.5rem 0rem 3.5rem;
       padding: 10px;
+     
     }
 
     .services li {
       font-size: 1.4rem;
       margin: 1.2rem 0;
       display: flex;
-      align-items: center;
+      align-items: left;
       gap: 1rem;
     }
+
+    /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .whatsapp-float {
+      bottom: 20px;
+      right: 20px;
+      width: 65px;
+      height: 65px;
+    }
+    .whatsapp-float svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
 
     /* Contact Section */
 #contact {
@@ -751,9 +872,119 @@
     width: 100%;
   }
 }
+
+
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1200;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transition: 0.4s ease;
+}
+
+/* ANIMATED X STATE */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* MOBILE MENU IMPROVED */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(15,15,15,0.98);
+  backdrop-filter: blur(10px);
+  z-index: 1100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu ul {
+  list-style: none;
+  text-align: center;
+}
+
+.mobile-menu li {
+  margin: 2rem 0;
+}
+
+.mobile-menu a {
+  font-size: 2rem;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.mobile-menu a:hover {
+  color: var(--yellow);
+}
+
+/* SHOW HAMBURGER ONLY ON MOBILE */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .top-nav ul {
+    display: none;
+  }
+}
+
+/* BACKDROP */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+}
+
+.menu-backdrop.show {
+  opacity: 1;
+  pointer-events: all;
+}
   </style>
 </head>
-<body>
+<body> 
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <h1>ANAG STUDIOS</h1>
+      <div class="spinner"></div>
+    </div>
+  </div>
 
   <!-- Yellow Sidebar -->
   <aside class="sidebar"></aside>
@@ -766,11 +997,18 @@
       <li><a href="#photo_gallery">Gallery</a></li>
       <li><a href="#contact">Contact us</a></li>
     </ul>
-    <div class="auth">
-      <span class="auth-icon">👤</span>
-      <a href="login.html">Sign In | Log In</a>
-    </div>
+  
   </nav>
+
+  <div class="menu-backdrop" id="backdrop"></div>
+
+
+  <div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
 
   <!-- Hero Section -->
   <section class="hero">
@@ -1141,5 +1379,100 @@
   </div>
 </a>
 
+
+<script>
+  // =============================================
+  // Preloader
+  // =============================================
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => {
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 800);
+    }, 1800);
+  });
+
+  // =============================================
+  // Hamburger Mobile Menu + Backdrop
+  // =============================================
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const backdrop = document.getElementById('backdrop');
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('active');
+    if (backdrop) backdrop.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+    if (backdrop) backdrop.classList.toggle('show', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu when clicking on backdrop
+  if (backdrop) {
+    backdrop.addEventListener('click', closeMenu);
+  }
+
+  // Close menu when clicking any link inside mobile menu
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // =============================================
+  // Scroll Reveal Animation
+  // =============================================
+  function revealOnScroll() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85) {
+        el.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+  // =============================================
+  // Click-to-Zoom Lightbox Gallery
+  // =============================================
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      const lightbox = document.createElement('div');
+      lightbox.style.cssText = `
+        position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; 
+        display:flex; align-items:center; justify-content:center; cursor:pointer;
+      `;
+      lightbox.innerHTML = `
+        <img src="${img.src}" style="max-width:92%; max-height:92vh; border-radius:12px; box-shadow:0 0 60px rgba(255,204,0,0.6);" alt="Enlarged image">
+        <button onclick="this.parentElement.remove()" 
+                style="position:absolute; top:30px; right:30px; background:#ffcc00; color:#000; border:none; 
+                       width:55px; height:55px; border-radius:50%; font-size:2rem; cursor:pointer;">×</button>
+      `;
+      document.body.appendChild(lightbox);
+
+      // Close lightbox when clicking outside image
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.remove();
+      });
+    });
+  });
+
+  // Optional: Close lightbox with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+      const lightbox = document.querySelector('div[style*="z-index:9999"]');
+      if (lightbox) lightbox.remove();
+    }
+  });
+</script>
 </body>
+
 </html>
