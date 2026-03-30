@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery Detail</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #1e0533, #0f001a);
+      color: white;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #d8b4fe;
+      text-shadow: 0 0 20px rgba(216, 180, 254, 0.5);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #c084fc;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      color: white;
+      transform: translateX(-5px);
+    }
+
+    .gallery-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.8rem;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .detail-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      aspect-ratio: 4 / 3;
+    }
+
+    .detail-item:hover {
+      transform: scale(1.06);
+      box-shadow: 0 25px 60px rgba(168, 85, 247, 0.5);
+    }
+
+    .detail-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .detail-item:hover img {
+      transform: scale(1.15);
+    }
+
+    /* Full-screen Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 100px rgba(168, 85, 247, 0.7);
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 92vh;
+      display: block;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      font-size: 2.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(168, 85, 247, 0.7);
+      transform: translateY(-50%) scale(1.15);
+    }
+
+    .prev { left: 2rem; }
+    .next { right: 2rem; }
+
+    .close-lightbox {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(220, 38, 38, 0.8);
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .close-lightbox:hover {
+      background: #dc2626;
+      transform: rotate(90deg);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Gallery
+    </a>
+    <h1 id="category-title">Loading...</h1>
+  </header>
+
+  <div class="gallery-detail-grid" id="detail-grid">
+    <!-- Photos will be injected here by JavaScript -->
+  </div>
+
+  <!-- Full-screen Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-lightbox" id="closeLightbox">&times;</button>
+    <button class="lightbox-nav prev" id="prevLightbox">←</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Detailed photo">
+    </div>
+    <button class="lightbox-nav next" id="nextLightbox">→</button>
+  </div>
+
+  <script>
+    // Get category from URL (?category=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category') || 'all';
+
+    // Title mapping (you can expand this)
+    const titles = {
+      'golden-hour': 'Golden Hour Wedding Collection',
+      'drone': 'Drone Aerial Photography',
+      'studio': 'Studio Portrait Sessions',
+      'event': 'Corporate & Event Highlights',
+      'ecommerce': 'E-commerce Product Photography',
+      'graduation': 'Graduation & Milestone Photography',
+      'children': 'Children & Family Photography',
+      // Add more categories here
+    };
+
+    document.getElementById('category-title').textContent = titles[category] || 'Gallery Collection';
+
+    // Your photos per category (add as many as you want)
+    const galleryData = {
+      'golden-hour': [
+        { thumb: './image/WEADING/weading 1.jpg', full: './image/WEADING/weading 1.jpg' },
+        { thumb: './image/WEADING/weading2.jpg', full: './image/WEADING/weading2.jpg' }, 
+        { thumb: './image/WEADING/weading3.jpg', full: './image/WEADING/weading3.jpg' }, 
+        { thumb: './image/WEADING/weading4.jpg', full: './image/WEADING/weading4.jpg' }, 
+        { thumb: './image/WEADING/weading5.jpg', full: './image/WEADING/weading5.jpg' }, 
+        { thumb: './image/WEADING/weading6.jpg', full: './image/WEADING/weading6.jpg' }, 
+        { thumb: './image/WEADING/weading7.jpg', full: './image/WEADING/weading7.jpg' }, 
+        { thumb: './image/WEADING/weading8.jpg', full: './image/WEADING/weading8.jpg' }, 
+        
+        // Add 10–20 more if you have them
+      ],
+      'drone': [
+        { thumb: './image/DRONES/drone1.jpg', full: './image/DRONES/drone1.jpg' },
+        { thumb: './image/DRONES/drone2.jpg', full: './image/DRONES/drone2.jpg' },
+        { thumb: './image/DRONES/drone3.jpg', full: './image/DRONES/drone3.jpg' },
+        { thumb: './image/DRONES/drone4.jpg', full: './image/DRONES/drone4.jpg' },
+        { thumb: './image/DRONES/drone5.jpg', full: './image/DRONES/drone5.jpg' },
+        { thumb: './image/DRONES/drone6.jpg', full: './image/DRONES/drone6.jpg' },
+        
+        
+        // more...
+      ],
+      'studio': [
+        { thumb: './image/studio sectionm.jpg', full: './image/studio_full_1.jpg' },
+        { thumb: './image/studio1.jpg', full: './image/studio1.jpg' },
+        { thumb: './image/studio2.jpg', full: './image/studio2.jpg' },
+        { thumb: './image/studio3.jpg', full: './image/studio3.jpg' },
+        { thumb: './image/studio4.jpg', full: './image/studio4.jpg' },
+        { thumb: './image/studio1.jpg', full: './image/studio1.jpg' },
+        // more studio shots...
+      ],
+      'event': [
+        { thumb: './image/event photos.jpg', full: './image/event_full_1.jpg' },
+        { thumb: './image/event photos.jpg', full: './image/event_full_1.jpg' },
+        { thumb: './image/event photos.jpg', full: './image/event_full_1.jpg' },
+        { thumb: './image/event photos.jpg', full: './image/event_full_1.jpg' },
+        { thumb: './image/event photos.jpg', full: './image/event_full_1.jpg' },
+        { thumb: './image/event photos.jpg', full: './image/event_full_1.jpg' },
+        // more event photos...
+      ],
+      'ecommerce': [
+        { thumb: './image/ecommence/e-commence.jpg', full: './image/ecommence/e-commence.jpg' },
+        { thumb: './image/ecommence/ecommence.jpg', full: './image/ecommence/ecommence.jpg' },
+        { thumb: './image/ecommence/ecommence4.jpg', full: './image/ecommence/ecommence4.jpg' },
+        { thumb: './image/ecommence/ecommence5.jpg', full: './image/ecommence/ecommence5.jpg' },
+        { thumb: './image/ecommence/ecommence6.jpg', full: './image/ecommence/ecommence6.jpg' },
+        { thumb: './image/ecommence/ecommence7.jpg', full: './image/ecommence/ecommence7.jpg' },
+        { thumb: './image/ecommence/ecommence8.jpg', full: './image/ecommence/ecommence8.jpg' },
+        { thumb: './image/ecommence/ecommence9.jpg', full: './image/ecommence/ecommence9.jpg' },
+        // more product shots...
+      ],
+      'graduation': [
+        { thumb: './image/graduation7.jpg', full: './image/graduation7.jpg' },
+        { thumb: './image/graduation1.jpg', full: './image/graduation1.jpg' },
+        { thumb: './image/graduation2.jpg', full: './image/graduation2.jpg' },
+        { thumb: './image/graduation3.jpg', full: './image/graduation3.jpg' },
+        { thumb: './image/graduation4.jpg', full: './image/graduation4.jpg' },
+        { thumb: './image/graduation5.jpg', full: './image/graduation5.jpg' },
+        // more graduation photos...
+      ],
+      'children': [
+        { thumb: './image/child/child1.jpg', full: './image/child/child1.jpg' },
+        { thumb: './image/child/child2.jpg', full: './image/child/child2.jpg' },
+        { thumb: './image/child/child3.jpg', full: './image/child/child3.jpg' },
+        { thumb: './image/child/child4.jpg', full: './image/child/child4.jpg' },
+        { thumb: './image/child/child5.jpg', full: './image/child/child5.jpg' },
+        { thumb: './image/child/CHILD9.jpg', full: './image/child/CHILD9.jpg' },
+        { thumb: './image/child/child7.jpg', full: './image/child/child7.jpg' },
+        { thumb: './image/child/child8.jpg', full: './image/child/child8.jpg' },
+        { thumb: './image/child/child12.jpeg', full: './image/child/child12.jpeg' },
+        { thumb: './image/child/CHILD11.jpeg', full: './image/child/CHILD11.jpeg' },
+        // more children photos...
+      ]
+    };
+
+    // Render photos for current category
+    const grid = document.getElementById('detail-grid');
+    const photos = galleryData[category] || [];
+
+    if (photos.length === 0) {
+      grid.innerHTML = '<p style="text-align:center; font-size:1.5rem; color:#a0a0c0;">No photos available in this category yet.</p>';
+    } else {
+      photos.forEach((photo, index) => {
+        const div = document.createElement('div');
+        div.className = 'detail-item';
+        div.innerHTML = `<img src="${photo.thumb}" alt="Gallery photo ${index + 1}" data-full="${photo.full}" data-index="${index}">`;
+        grid.appendChild(div);
+      });
+    }
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const prevLightbox = document.getElementById('prevLightbox');
+    const nextLightbox = document.getElementById('nextLightbox');
+
+    let currentPhotoIndex = 0;
+
+    grid.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (img) {
+        currentPhotoIndex = parseInt(img.dataset.index);
+        showLightbox();
+      }
+    });
+
+    function showLightbox() {
+      const fullSrc = photos[currentPhotoIndex].full;
+      lightboxImg.src = fullSrc;
+      lightbox.style.display = 'flex';
+    }
+
+    closeLightbox.onclick = () => lightbox.style.display = 'none';
+    lightbox.onclick = (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; };
+
+    prevLightbox.onclick = () => {
+      currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+      showLightbox();
+    };
+
+    nextLightbox.onclick = () => {
+      currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+      showLightbox();
+    };
+  </script>
+</body>
+</html>

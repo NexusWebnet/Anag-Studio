@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Reservations – Charles Visuals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --yellow: #ffcc00;
+      --orange: #ff9900;
+      --dark: #0a0a0a;
+      --gray: #161616;
+      --light: #d4d4d4;
+      --border: rgba(255, 204, 0, 0.18);
+      --glass: rgba(22, 22, 22, 0.65);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .container {
+      padding: 6rem 5% 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--yellow);
+      font-size: 3rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .reservation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+
+    .reservation-card {
+      background: var(--gray);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .reservation-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255,204,0,0.12);
+      border-color: var(--yellow);
+    }
+
+    .reservation-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .reservation-info {
+      padding: 1.5rem;
+    }
+
+    .reservation-title {
+      font-size: 1.4rem;
+      color: var(--yellow);
+      margin-bottom: 0.8rem;
+    }
+
+    .reservation-detail {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin: 0.4rem 0;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .status-pending  { background: #fbbf24; color: black; }
+    .status-approved { background: #4ade80; color: black; }
+    .status-rejected { background: #f87171; color: white; }
+    .status-cancelled{ background: #6b7280; color: white; }
+
+    .action-btn {
+      margin-top: 1rem;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .cancel-btn {
+      background: #f87171;
+      color: white;
+    }
+
+    .cancel-btn:hover {
+      background: #ef4444;
+    }
+
+    .no-reservations {
+      text-align: center;
+      color: #aaa;
+      font-size: 1.3rem;
+      padding: 5rem 0;
+    }
+
+    @media (max-width: 900px) {
+      .reservation-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="rent.html" class="logo">Charles Visuals</a>
+</header>
+
+<div class="container">
+  <h1>My Reservations</h1>
+
+  <div id="reservationsGrid" class="reservation-grid">
+    <p class="no-reservations">Loading your reservations...</p>
+  </div>
+</div>
+
+<script>
+  async function loadMyReservations() {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      alert("Please login first");
+      window.location.href = 'login.html';
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/api/reservations/my', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || 'Failed to load reservations');
+      }
+
+      const reservations = await response.json();
+      const grid = document.getElementById('reservationsGrid');
+      grid.innerHTML = '';
+
+      if (reservations.length === 0) {
+        grid.innerHTML = '<p class="no-reservations">You have no reservations yet.</p>';
+        return;
+      }
+
+      reservations.forEach(res => {
+        const card = document.createElement('div');
+        card.className = 'reservation-card';
+
+        const firstImage = res.image_url 
+          ? `http://localhost:3000${JSON.parse(res.image_url)[0]}` 
+          : './image/IMG_0255.jpg';
+
+        card.innerHTML = `
+          <img src="${firstImage}" alt="${res.gear_name}" class="reservation-image" onerror="this.src='./image/IMG_0255.jpg'">
+          <div class="reservation-info">
+            <h3 class="reservation-title">${res.gear_name}</h3>
+            <p class="reservation-detail">From: ${new Date(res.start_date).toLocaleDateString()}</p>
+            <p class="reservation-detail">To: ${new Date(res.end_date).toLocaleDateString()}</p>
+            <p class="reservation-detail">Reserved on: ${new Date(res.created_at).toLocaleDateString()}</p>
+            <span class="status-badge status-${res.status}">${res.status.charAt(0).toUpperCase() + res.status.slice(1)}</span>
+
+            ${res.status === 'pending' ? `
+              <button class="action-btn cancel-btn" onclick="cancelReservation(${res.id})">
+                Cancel Reservation
+              </button>
+            ` : ''}
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    } catch (err) {
+      console.error(err);
+      document.getElementById('reservationsGrid').innerHTML = 
+        `<p class="no-reservations" style="color:#ff6b6b;">Error: ${err.message}</p>`;
+    }
+  }
+
+  async function cancelReservation(id) {
+    if (!confirm('Are you sure you want to cancel this reservation?')) return;
+
+    const token = localStorage.getItem('authToken');
+    try {
+      const response = await fetch(`http://localhost:3000/api/reservations/${id}/cancel`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || 'Failed to cancel');
+      }
+
+      alert('Reservation cancelled successfully');
+      loadMyReservations();
+    } catch (err) {
+      alert('Error cancelling reservation: ' + err.message);
+    }
+  }
+
+  // Load reservations when page opens
+  loadMyReservations();
+</script>
+
+</body>
+</html>
