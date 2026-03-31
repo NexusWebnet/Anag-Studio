@@ -615,6 +615,7 @@
 @media (max-width: 480px) {
   .gallery-grid {
     column-count: 1;
+    
   }
 }
   /* WhatsApp Floating Button */
@@ -974,6 +975,143 @@
   opacity: 1;
   pointer-events: all;
 }
+
+
+
+/* GRID LAYOUT */
+.pricing-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "large wide wide"
+    "large studio outdoor"
+    "bottom-left bottom-right bottom-right";
+  gap: 10px;
+  max-width: 1100px;
+  margin: 3rem -3rem;
+}
+
+/* GRID AREAS */
+.card-large { grid-area: large; }
+.card-wide { grid-area: wide; }
+.card:nth-child(3) { grid-area: studio; }
+.card:nth-child(4) { grid-area: outdoor; }
+.card-bottom-left { grid-area: bottom-left; }
+.card-bottom-right { grid-area: bottom-right; }
+
+/* CARD BASE */
+.card {
+  position: relative;
+  min-height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+
+  display: flex;
+  align-items: flex-end;
+
+  background-size: cover;
+  background-position: center;
+
+  transition: all 0.5s ease;
+}
+
+/* IMAGE ZOOM EFFECT */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(255,204,0,0.25);
+}
+
+/* DARK + BRAND OVERLAY */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.4),
+    rgba(255,204,0,0.15)
+  );
+  z-index: 1;
+}
+
+/* GLASS TEXT PANEL */
+.card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1.2rem;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.25);
+}
+
+/* TEXT */
+.card-content span {
+  color: #dcb30b;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.4;
+
+  display: block;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+/* REVEAL ANIMATION */
+.card.show span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* BACKGROUND IMAGES */
+.card-large {
+  background-image: url('./image/pricing/rate-card-T-&-Wed-photography0101.jpg.jpeg');
+}
+
+.card-wide {
+  background-image: url('./image/pricing/GRADUATION.jpg.jpeg');
+}
+
+.card:nth-child(3) {
+  background-image: url('./image/pricing/PHOTOSHOOT-STUDIO-RATE-CARD.jpg.jpeg');
+}
+
+.card:nth-child(4) {
+  background-image: url('./image/pricing/PHOTOSHOOT-OUTDOORS-RATE-CARD.jpg.jpeg');
+}
+
+.card-bottom-left {
+  background-image: url('./image/pricing/Design-project.jpg.jpeg');
+}
+
+.card-bottom-right {
+  background-image: url('./image/pricing/rate-card-T-&-Wed-photography0101.jpg.jpeg');
+}
+@media (max-width: 768px) {
+  .pricing-layout {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+
+  .card-content span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-layout {
+    transform: scale(0.7);
+  }
+}
+
+.card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+  
   </style>
 </head>
 <body> 
@@ -1134,55 +1272,56 @@
     </div> -->
   </section>
 
-  <!-- === NEW SECTION: Pricing Flyers / Price List Images === -->
+  
+
+ <!-- Pricing & Packages Section -->
   <section id="pricing">
-    <h2 class="section-title">Pricing & Packages</h2>
-    <p class="pricing-subtitle">View our latest pricing flyers below. Contact us for custom quotes!</p>
-
-    <div class="flyers-grid">
-      <!-- Replace these src paths with your actual flyer images -->
-      <!-- You can add as many as you want – just copy-paste the flyer-card block -->
-
-      <div class="flyer-card">
-        <img src="./image/pricing/rate-card-T-&-Wed-photography0101.jpg.jpeg" alt="Photography Packages Pricing Flyer" class="flyer-image">
-        <div class="flyer-caption"> PHOTOGRAPHY PACKAGES - WHITES WEEDINGS & TRADITIONAL MARRIAGE</div>
-      </div>
-      
-      <div class="flyer-card">
-        <a href="studio">
-        <img src="./image/pricing/PHOTOSHOOT-OUTDOORS-RATE-CARD.jpg.jpeg" alt="Gear Rental Pricing Flyer" class="flyer-image">
-        <div class="flyer-caption">PHOTOSHOOT OUTDOOR RATE</div>
-        </a>
-      </div>
-
-      <div class="flyer-card">
-        <img src="./image/pricing/PHOTOSHOOT-STUDIO-RATE-CARD.jpg.jpeg" alt="Gear Rental Pricing Flyer" class="flyer-image">
-        <div class="flyer-caption">PHOTOSHOOT STUDIO RATE</div>
-      </div>
-
-      <div class="flyer-card">
-        <img src="./image/pricing/frames rate.jpeg" alt="Gear Rental Pricing Flyer" class="flyer-image">
-        <div class="flyer-caption">PICTURE FRAMES RATE</div>
-      </div>
-
-      <div class="flyer-card">
-        <img src="./image/WED.jpeg" alt="Videography Packages Pricing Flyer" class="flyer-image">
-        <div class="flyer-caption">VIDEOGRAPHY & PHOTOGRAPHY WEDDING PACKAGE</div>
-      </div>
-
-      <!-- Add more flyers here if you have them -->
-      
-      <div class="flyer-card">
-        <img src="./image/GRADUATION.jpg.jpeg" alt="Combo Photo + Video Package" class="flyer-image">
-        <div class="flyer-caption">GRADUATION SECTION PRICES</div>
-      </div>
-     
+<h2 class="section-title">Pricing & Packages</h2>
+<div class="pricing-layout">
+  
+  <a href="wedding.html" class="card card-large">
+    <div class="card-content">
+      <span>WEEDING AND ENGAGEMENT <br> VIDEO AND PHOTOSHOOT</span>
     </div>
+  </a>
 
-    <p style="text-align:center; margin-top:3rem; font-size:1.2rem;">
-      Need a custom package or current rates? <a href="#contact" style="color:var(--yellow);">Contact us now</a>
-    </p>
-  </section>
+  <a href="graduation.html" class="card card-wide">
+    <div class="card-content">
+      <span>GRADUATION PRICING</span>
+    </div>
+  </a>
+
+  <a href="studio.html" class="card">
+    <div class="card-content">
+      <span>PHOTOSHOOT <br> STUDIO</span>
+    </div>
+  </a>
+
+  <a href="outdoor.html" class="card">
+    <div class="card-content">
+      <span>PHOTOSHOOT <br> OUTDOOR</span>
+    </div>
+  </a>
+
+  <a href="event.html" class="card card-bottom-left">
+    <div class="card-content">
+      <span>EVENT PHOTOGRAPHY</span>
+    </div>
+  </a>
+
+  <a href="wedding-photos.html" class="card card-bottom-right">
+    <div class="card-content">
+      <span>WEEDING AND ENGAGEMENT <br> PHOTOS ONLY</span>
+    </div>
+  </a>
+
+</div>
+</section>
+
+
+
+
+
 
 
   <!-- Gallery Section -->
@@ -1472,6 +1611,21 @@
       if (lightbox) lightbox.remove();
     }
   });
+
+  const cards = document.querySelectorAll('.card');
+
+function revealCards() {
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 0.85) {
+      card.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealCards);
+window.addEventListener('load', revealCards);
 </script>
 </body>
 
