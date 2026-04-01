@@ -41,6 +41,7 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
+      
       transition: opacity 0.8s ease;
     }
 
@@ -50,6 +51,9 @@
       font-size: 3.8rem;
       color: var(--yellow);
       margin-bottom: 1rem;
+      margin-left: 7rem;
+      
+     
     }
 
 
@@ -60,6 +64,7 @@
       border-top: 8px solid var(--yellow);
       border-radius: 50%;
       animation: spin 1s linear infinite;
+        margin-left: 11rem;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -588,6 +593,7 @@
   display: flex;
   align-items: flex-end;
   padding: 1.5rem;
+  overflow: hidden;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -599,6 +605,19 @@
   color: var(--yellow);
 }
 
+.caption {
+  color: var(--yellow);
+  font-size: 1.1rem;
+
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+/* when visible */
+.gallery-item.show .caption {
+  transform: translateY(0);
+  opacity: 1;
+}
 /* Responsive column adjustments */
 @media (max-width: 1100px) {
   .gallery-grid {
@@ -876,35 +895,40 @@
 
 
 
-/* ===== HAMBURGER ===== */
 .hamburger {
   display: none;
+  position: absolute;
+  left: 20px;
+  top: 20px;
   flex-direction: column;
   gap: 6px;
   cursor: pointer;
-  z-index: 1200;
+  z-index: 2000;
+}
+.hamburger span :hover {
+  background: #dbe60a;
+
 }
 
 .hamburger span {
-  width: 30px;
+  width: 28px;
   height: 3px;
   background: #fff;
   border-radius: 5px;
   transition: 0.4s ease;
 }
 
-/* ANIMATED X STATE */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    color: var(--yellow);
+  }
+
+  .top-nav ul {
+    display: none;
+  }
 }
 
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
 
 /* MOBILE MENU IMPROVED */
 .mobile-menu {
@@ -1111,6 +1135,22 @@
   color: inherit;
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .gallery-overlay {
+    opacity: 1; /* always visible */
+  }
+
+  .caption {
+    transform: translateY(20px);
+    opacity: 0.8;
+  }
+
+  .gallery-item.show .caption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
   
   </style>
 </head>
@@ -1136,17 +1176,27 @@
       <li><a href="#contact">Contact us</a></li>
     </ul>
   
-  </nav>
-
-  <div class="menu-backdrop" id="backdrop"></div>
+    <div class="menu-backdrop" id="backdrop"></div>
 
 
   <div class="hamburger" id="hamburger">
   <span></span>
   <span></span>
   <span></span>
+  </nav>
+
+  
 </div>
 
+<!-- handburger div file  -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#about">About us</a></li>
+    <li><a href="#photo_gallery">Gallery</a></li>
+    <li><a href="#contact">Contact us</a></li>
+  </ul>
+</div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -1329,49 +1379,49 @@
     <h2 class="section-title">Photo Gallery</h2>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <a href="gallery-detail.html?category=golden-hour" class="gallery-item">
+        <a href="gallery-detail.html?category=golden-hour">
         <img src="./image/golden_hour_2.jpg" alt="Golden Hour Wedding">
         <div class="gallery-overlay"><div class="caption">Golden Hour Wedding </div></div>
         </a>
       </div>
 
       <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=drone" class="gallery-item">
+        <a href="gallery-detail.html?category=drone">
         <img src="./image/arial_drone.jpg" alt="Drone Cityscape">
         <div class="gallery-overlay"><div class="caption">Drone Aerial </div></div>
         </a>
       </div> -->
 
       <div class="gallery-item">
-        <a href="gallery-detail.html?category=studio" class="gallery-item">
+        <a href="gallery-detail.html?category=studio">
         <img src="./image/studio2.jpg" alt="Studio Portrait">
         <div class="gallery-overlay"><div class="caption">Studio Portrait Session</div></div>
         </a>
       </div>
 
       <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=event" class="gallery-item">
+        <a href="gallery-detail.html?category=event">
         <img src="./image/event photos.jpg" alt="Event Coverage">
         <div class="gallery-overlay"><div class="caption">Corporate Event Highlight</div></div>
         </a>
       </div> -->
 
       <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=ecommerce" class="gallery-item">
+        <a href="gallery-detail.html?category=ecommerce">
         <img src="./image/ECOMMENCE/ECOMMENCE.jpg" alt="Product Shoot">
         <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
         </a>
       </div> -->
 
       <div class="gallery-item">
-        <a href="gallery-detail.html?category=graduation" class="gallery-item">
+        <a href="gallery-detail.html?category=graduation">
         <img src="./image/graduation6.JPG" alt="Product Shoot">
         <div class="gallery-overlay"><div class="caption">Graduation Photography</div></div>
         </a>
       </div>
 
       <div class="gallery-item">
-        <a href="gallery-detail.html?category=children" class="gallery-item">
+        <a href="gallery-detail.html?category=children" >
         <img src="./image/children.jpeg" alt="Product Shoot">
         <div class="gallery-overlay"><div class="caption">Children Photography</div></div>
         </a>
@@ -1626,6 +1676,22 @@ function revealCards() {
 
 window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
+
+
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+function revealGallery() {
+  galleryItems.forEach(item => {
+    const rect = item.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 0.85) {
+      item.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealGallery);
+window.addEventListener('load', revealGallery);
 </script>
 </body>
 
