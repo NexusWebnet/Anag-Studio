@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Studio Photoshoot | Anag Studios</title>
+
+<style>
+:root {
+  --yellow:#ffcc00;
+  --dark:#0f0f0f;
+  --gray:#1a1a1a;
+  --light:#e0e0e0;
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: 'Inter', sans-serif;
+  background:var(--dark);
+  color:#fff;
+}
+
+/* HERO */
+.hero{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+  url('./image/studio2.jpg') center/cover;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  color:var(--yellow);
+}
+
+/* PACKAGES */
+.packages{
+  padding:5rem 5%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:3rem;
+  color:var(--yellow);
+  margin-bottom:3rem;
+}
+
+.package-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:2rem;
+  max-width:1200px;
+  margin:auto;
+}
+
+.card{
+  background:var(--gray);
+  border-radius:15px;
+  padding:2rem;
+  transition:0.4s;
+  border:1px solid rgba(255,204,0,0.2);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(255,204,0,0.25);
+  border-color:var(--yellow);
+}
+
+.card h3{
+  color:var(--yellow);
+  margin-bottom:1rem;
+}
+
+.price{
+  font-size:2rem;
+  margin-bottom:1rem;
+}
+
+.card ul{
+  list-style:none;
+  margin-bottom:2rem;
+}
+
+.card li{
+  margin:0.6rem 0;
+}
+
+.btn{
+  display:block;
+  text-align:center;
+  padding:1rem;
+  background:var(--yellow);
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:8px;
+}
+
+/* POLICY */
+.policy{
+  background:var(--gray);
+  padding:4rem 5%;
+  margin-top:4rem;
+}
+
+.policy h2{
+  text-align:center;
+  color:var(--yellow);
+  margin-bottom:2rem;
+}
+
+.policy ul{
+  max-width:800px;
+  margin:auto;
+}
+
+.policy li{
+  margin:1rem 0;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{
+    font-size:2.2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Studio Photoshoot Packages</h1>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages">
+  <h2 class="section-title">Choose Your Package</h2>
+
+  <div class="package-grid">
+
+    <div class="card">
+      <h3>Starter</h3>
+      <div class="price">GH₵ 300</div>
+      <ul>
+        <li>✔ 30 Minutes</li>
+        <li>✔ 1 Outfit</li>
+        <li>✔ 5 Edited Photos</li>
+        <li>✔ 1 Background</li>
+      </ul>
+      <a href="https://wa.me/233533662244" class="btn">Book Now</a>
+    </div>
+
+    <div class="card">
+      <h3>Standard</h3>
+      <div class="price">GH₵ 600</div>
+      <ul>
+        <li>✔ 1 Hour</li>
+        <li>✔ 2 Outfits</li>
+        <li>✔ 10 Edited Photos</li>
+        <li>✔ 2 Backgrounds</li>
+      </ul>
+      <a href="#" class="btn">Book Now</a>
+    </div>
+
+    <div class="card">
+      <h3>Premium</h3>
+      <div class="price">GH₵ 1000</div>
+      <ul>
+        <li>✔ 2 Hours</li>
+        <li>✔ Unlimited Outfits</li>
+        <li>✔ 20 Edited Photos</li>
+        <li>✔ Multiple Backgrounds</li>
+      </ul>
+      <a href="#" class="btn">Book Now</a>
+    </div>
+
+    <div class="card">
+      <h3>Deluxe</h3>
+      <div class="price">GH₵ 1500</div>
+      <ul>
+        <li>✔ 3+ Hours</li>
+        <li>✔ All Soft Copies</li>
+        <li>✔ 30 Edited Photos</li>
+        <li>✔ Creative Direction</li>
+      </ul>
+      <a href="#" class="btn">Book Now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- POLICY -->
+<section class="policy">
+  <h2>Studio Policy</h2>
+  <ul>
+    <li>✔ 50% deposit required before booking confirmation</li>
+    <li>✔ Balance must be paid before delivery</li>
+    <li>✔ Edited photos delivered within 3–5 working days</li>
+    <li>✔ Extra edits charged separately</li>
+    <li>✔ Late arrival reduces session time</li>
+    <li>✔ No refund after booking confirmation</li>
+  </ul>
+</section>
+
+</body>
+</html>

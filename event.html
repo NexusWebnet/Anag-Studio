@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Event Photography | Anag Studios</title>
+
+<style>
+:root {
+  --yellow:#ffcc00;
+  --dark:#0f0f0f;
+  --gray:#1a1a1a;
+  --light:#e0e0e0;
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--dark);
+  color:#fff;
+}
+
+/* HERO */
+.hero{
+  height:65vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  background:
+  linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+  url('./image/event photos.jpg') center/cover no-repeat;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  color:var(--yellow);
+}
+
+/* PACKAGES */
+.packages{
+  padding:5rem 5%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:3rem;
+  color:var(--yellow);
+  margin-bottom:3rem;
+}
+
+.package-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:2rem;
+  max-width:1200px;
+  margin:auto;
+}
+
+.card{
+  background:var(--gray);
+  border-radius:16px;
+  padding:2rem;
+  transition:0.4s;
+  border:1px solid rgba(255,204,0,0.2);
+  position:relative;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(255,204,0,0.25);
+  border-color:var(--yellow);
+}
+
+/* POPULAR */
+.popular{
+  border:2px solid var(--yellow);
+}
+
+.popular::before{
+  content:"MOST POPULAR";
+  position:absolute;
+  top:10px;
+  right:-45px;
+  background:var(--yellow);
+  color:#000;
+  padding:5px 45px;
+  transform:rotate(45deg);
+  font-size:0.7rem;
+  font-weight:bold;
+}
+
+/* PREMIUM TAG */
+.premium::before{
+  content:"PREMIUM";
+  position:absolute;
+  top:10px;
+  left:-45px;
+  background:#fff;
+  color:#000;
+  padding:5px 45px;
+  transform:rotate(-45deg);
+  font-size:0.7rem;
+  font-weight:bold;
+}
+
+.card h3{
+  color:var(--yellow);
+  margin-bottom:1rem;
+}
+
+.price{
+  font-size:2rem;
+  margin-bottom:1rem;
+}
+
+.card ul{
+  list-style:none;
+  margin-bottom:2rem;
+}
+
+.card li{
+  margin:0.6rem 0;
+}
+
+.btn{
+  display:block;
+  text-align:center;
+  padding:1rem;
+  background:var(--yellow);
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:8px;
+}
+
+/* POLICY */
+.policy{
+  background:var(--gray);
+  padding:4rem 5%;
+  margin-top:4rem;
+}
+
+.policy h2{
+  text-align:center;
+  color:var(--yellow);
+  margin-bottom:2rem;
+}
+
+.policy ul{
+  max-width:800px;
+  margin:auto;
+}
+
+.policy li{
+  margin:1rem 0;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:4rem 5%;
+}
+
+.cta h2{
+  color:var(--yellow);
+}
+
+.cta a{
+  display:inline-block;
+  margin-top:1rem;
+  padding:1rem 2.5rem;
+  background:var(--yellow);
+  color:#000;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{
+    font-size:2.2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Event Photography Packages</h1>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages">
+  <h2 class="section-title">Capture Every Moment</h2>
+
+  <div class="package-grid">
+
+    <div class="card">
+      <h3>Basic Coverage</h3>
+      <div class="price">GH₵ 800</div>
+      <ul>
+        <li>✔ 2 Hours Coverage</li>
+        <li>✔ 1 Photographer</li>
+        <li>✔ 50+ Edited Photos</li>
+      </ul>
+      <a href="https://wa.me/233533662244" class="btn">Book Now</a>
+    </div>
+
+    <div class="card popular">
+      <h3>Standard Coverage</h3>
+      <div class="price">GH₵ 1500</div>
+      <ul>
+        <li>✔ 4 Hours Coverage</li>
+        <li>✔ 1 Photographer</li>
+        <li>✔ 120+ Edited Photos</li>
+      </ul>
+      <a href="https://wa.me/233533662244" class="btn">Book Now</a>
+    </div>
+
+    <div class="card premium">
+      <h3>Premium Coverage</h3>
+      <div class="price">GH₵ 2500</div>
+      <ul>
+        <li>✔ 6 Hours Coverage</li>
+        <li>✔ 2 Photographers</li>
+        <li>✔ 250+ Edited Photos</li>
+      </ul>
+      <a href="https://wa.me/233533662244" class="btn">Book Now</a>
+    </div>
+
+    <div class="card">
+      <h3>Full-Day Coverage</h3>
+      <div class="price">GH₵ 4000</div>
+      <ul>
+        <li>✔ 8–10 Hours Coverage</li>
+        <li>✔ 2 Photographers</li>
+        <li>✔ Unlimited Photos</li>
+        <li>✔ Priority Editing</li>
+      </ul>
+      <a href="https://wa.me/233533662244" class="btn">Book Now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- POLICY -->
+<section class="policy">
+  <h2>Event Coverage Policy</h2>
+  <ul>
+    <li>✔ 50% deposit required to confirm booking</li>
+    <li>✔ Overtime charged per additional hour</li>
+    <li>✔ Edited photos delivered within 5–7 working days</li>
+    <li>✔ Travel cost applies outside Accra/Kasoa</li>
+    <li>✔ Raw files not included unless requested</li>
+    <li>✔ No refund after booking confirmation</li>
+  </ul>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Planning an Event?</h2>
+  <p>Let us capture every special moment.</p>
+  <a href="https://wa.me/233533662244">Chat on WhatsApp</a>
+</section>
+
+</body>
+</html>
