@@ -45,7 +45,7 @@ body{
 
 /* PACKAGES */
 .packages{
-  padding:5rem 5%;
+  padding:1rem 5%;
 }
 
 .section-title{
@@ -110,7 +110,7 @@ body{
 /* POLICY */
 .policy{
   background:var(--gray);
-  padding:4rem 5%;
+  padding:1rem 5%;
   margin-top:4rem;
 }
 
@@ -123,10 +123,32 @@ body{
 .policy ul{
   max-width:800px;
   margin:auto;
+  text-decoration: none;
 }
 
 .policy li{
   margin:1rem 0;
+  text-decoration: none;
+}
+/* CTA */
+.cta{
+  text-align:center;
+  padding:4rem 5%;
+}
+
+.cta h2{
+  color:var(--yellow);
+}
+
+.cta a{
+  display:inline-block;
+  margin-top:1rem;
+  padding:1rem 2.5rem;
+  background:var(--yellow);
+  color:#000;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
 }
 
 /* MOBILE */
@@ -153,7 +175,7 @@ body{
 
     <div class="card">
       <h3>Starter</h3>
-      <div class="price">GH₵ 300</div>
+      <div class="price">GH₵ 250</div>
       <ul>
         <li>✔ 30 Minutes</li>
         <li>✔ 1 Outfit</li>
@@ -165,12 +187,24 @@ body{
 
     <div class="card">
       <h3>Standard</h3>
-      <div class="price">GH₵ 600</div>
+      <div class="price">GH₵ 400</div>
       <ul>
         <li>✔ 1 Hour</li>
         <li>✔ 2 Outfits</li>
-        <li>✔ 10 Edited Photos</li>
+        <li>✔ 8 Edited Photos</li>
         <li>✔ 2 Backgrounds</li>
+      </ul>
+      <a href="#" class="btn">Book Now</a>
+    </div>
+
+    <div class="card">
+      <h3>Standard</h3>
+      <div class="price">GH₵ 400</div>
+      <ul>
+        <li>✔ 1.5 Hour</li>
+        <li>✔ 3 Outfits</li>
+        <li>✔ 10 Edited Photos</li>
+        <li>✔ 3 Backgrounds</li>
       </ul>
       <a href="#" class="btn">Book Now</a>
     </div>
@@ -215,5 +249,12 @@ body{
   </ul>
 </section>
 
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to Capture Your Big Day?</h2>
+  <p>Let’s make your pictures unforgettable.</p>
+  <a href="https://wa.me/233533662244">Book via WhatsApp</a>
+</section>
 </body>
 </html>
