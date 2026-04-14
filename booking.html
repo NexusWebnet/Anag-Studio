@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Session - ANAG Studios</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: #000;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #c2185b;
+}
+
+.whatsapp-btn {
+    margin-top: 15px;
+    background: #25D366;
+}
+
+.whatsapp-btn:hover {
+    background: #1da851;
+}
+
+</style>
+</head>
+<body>
+
+<header>ANAG STUDIOS BOOKING</header>
+
+<div class="container">
+    <h2>Book Your Session</h2>
+
+    <form id="bookingForm">
+        
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Select Package</label>
+            <select id="package">
+                <option>Wedding Photography</option>
+                <option>Outdoor Photoshoot</option>
+                <option>Studio Session</option>
+                <option>Graduation Shoot</option>
+                <option>Event Coverage</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+            <label>Additional Message</label>
+            <textarea id="message" rows="4"></textarea>
+        </div>
+
+        <button type="submit">Submit Booking</button>
+        <button type="button" class="whatsapp-btn" onclick="sendWhatsApp()">Book via WhatsApp</button>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    alert("Booking submitted successfully! (You can connect this to a backend later)");
+});
+
+function sendWhatsApp() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const packageType = document.getElementById("package").value;
+    const date = document.getElementById("date").value;
+    const message = document.getElementById("message").value;
+
+    const whatsappNumber = "233533662244";
+
+    const text = `Hello ANAG Studios,
+Name: ${name}
+Phone: ${phone}
+Package: ${packageType}
+Date: ${date}
+Message: ${message}`;
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>

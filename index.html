@@ -10,11 +10,11 @@
 
   <style>
     :root {
-      --yellow: #ffcc00;
+      --yellow: #b5c91e;
       --orange: #ff9900;
-      --dark: #0f0f0f;
+      --dark: #ffffff;
       --gray: #1a1a1a;
-      --light: #e0e0e0;
+      --light: #0e0d0d;
     }
 
     * {
@@ -194,7 +194,7 @@
       max-width: 92%;
       max-height: 92vh;
       border-radius: 12px;
-      box-shadow: 0 0 60px rgba(255,204,0,0.6);
+      box-shadow: 0 0 60px rgba(247, 246, 243, 0.6);
     }
 
     /* Hero Section */
@@ -217,7 +217,7 @@
 
     .studio-label {
         margin-top: 50px;
-      color: var(--yellow);
+      color: #ffcc00;
       font-size: 2.1rem;
       letter-spacing: 4px;
       text-transform: uppercase;
@@ -226,20 +226,21 @@
     }
 
     .headline {
-      font-family: 'Playfair Display', serif;
+      font-family: 'montserrat', serif;
       font-size: clamp(4.5rem, 10vw, 9rem);
       line-height: 0.95;
       margin-bottom: 1.5rem;
+      color: #ffcc00;
     }
 
     .highlight {
-      color: var(--yellow);
+      color: black;
     }
 
     .underline {
       width: 120px;
       height: 4px;
-      background: var(--yellow);
+      background: #ffcc00;
       margin: 2rem 0;
     }
 
@@ -247,6 +248,10 @@
 #services {
   padding: 8rem 5%;
   background: var(--dark);
+  
+}
+.services li {
+ color: #000000;
 }
 
 .services-grid {
@@ -303,6 +308,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
+  color: rgb(247, 249, 241);
 }
 
 .service-check {
@@ -489,7 +495,7 @@
       max-width: 900px;
       margin: 0 auto 4rem;
       font-size: 1.3rem;
-      color: var(--light);
+      color: rgb(236, 228, 228);
     }
 
     .team-grid {
@@ -534,7 +540,7 @@
 
     .team-quote {
       font-style: italic;
-      color: var(--light);
+      color: rgb(255, 255, 255);
       font-size: 1.1rem;
     }
 
@@ -549,7 +555,7 @@
 
     /* Gallery Section */
 #video_gallery, #photo_gallery {
-  background: var(--gray);
+  background: rgb(255, 255, 255);
   padding: 1rem 5%; /* added consistent padding like other sections */
 }
 
@@ -565,7 +571,8 @@
   margin-bottom: 1.5rem;
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border: 2px solid #f4ff28;
+  border-radius:  12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   transition: transform 0.4s ease;
 }
@@ -724,8 +731,8 @@
 
     /* Contact Section */
 #contact {
-  padding: 8rem 5%;
-  background: var(--gray);
+  padding: -5rem 1%;
+  background: rgb(32, 31, 31);
   text-align: center;
 }
 
@@ -738,7 +745,7 @@
 
 .contact-subtitle {
   font-size: 1.3rem;
-  color: var(--light);
+  color: white;
   max-width: 700px;
   margin: 0 auto 4rem;
 }
@@ -799,6 +806,7 @@
 .contact-form {
   max-width: 700px;
   margin: 0 auto;
+  /* background: white; */
 }
 
 .form-group {
@@ -810,7 +818,7 @@
   display: block;
   font-size: 1.1rem;
   margin-bottom: 0.6rem;
-  color: var(--light);
+  color: white;
 }
 
 .form-input,
@@ -1157,6 +1165,7 @@
 }
   
   </style>
+  <script defer src="/_vercel/analytics/script.js"></script>
 </head>
 <body> 
 
@@ -1176,6 +1185,7 @@
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#about">About us</a></li>
+      <li><a href="#pricing">Pricing</a></li>
       <li><a href="#photo_gallery">Gallery</a></li>
       <li><a href="#contact">Contact us</a></li>
     </ul>
@@ -1216,7 +1226,7 @@
         <li><span class="check">✔</span> Products Shooting & Promo Videos</li>
         <li><span class="check">✔</span> Portrait Sessions & Storytelling Films</li>
         <li><span class="check">✔</span> Drone Videography & Aerial Highlights</li>
-        <li><span class="check">✔</span> Gear Rentals</li>
+        <!-- <li><span class="check">✔</span> Gear Rentals</li> -->
       </ul>
       <div class="buttons">
         <a href="#photo_gallery" class="btn-quote">Portfolio</a>
@@ -1234,6 +1244,134 @@
     </div>
   </section>
 
+
+
+  <!-- Gallery Section -->
+  <section id="photo_gallery">
+    <h2 class="section-title">Photo Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=golden-hour">
+        <img src="./image/golden_hour_2.jpeg" alt="Golden Hour Wedding">
+        <div class="gallery-overlay"><div class="caption">Golden Hour Wedding </div></div>
+        </a>
+      </div>
+
+      <!-- <div class="gallery-item">
+        <a href="gallery-detail.html?category=drone">
+        <img src="./image/arial_drone.jpg" alt="Drone Cityscape">
+        <div class="gallery-overlay"><div class="caption">Drone Aerial </div></div>
+        </a>
+      </div> -->
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=studio">
+        <img src="./image/studio2.jpg" alt="Studio Portrait">
+        <div class="gallery-overlay"><div class="caption">Studio Portrait Session</div></div>
+        </a>
+      </div>
+
+      <!-- <div class="gallery-item">
+        <a href="gallery-detail.html?category=event">
+        <img src="./image/event photos.jpg" alt="Event Coverage">
+        <div class="gallery-overlay"><div class="caption">Corporate Event Highlight</div></div>
+        </a>
+      </div> -->
+
+      <!-- <div class="gallery-item">
+        <a href="gallery-detail.html?category=ecommerce">
+        <img src="./image/ECOMMENCE/ECOMMENCE.jpg" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
+        </a>
+      </div> -->
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=graduation">
+        <img src="./image/graduation6.JPG" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">Graduation Photography</div></div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=children" >
+        <img src="./image/children.jpeg" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">Children Photography</div></div>
+        </a>
+      </div>
+
+      <!-- <div class="gallery-item">
+        <img src="./image/IMG_0263.JPG" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
+      </div> -->
+      <!-- Add more of YOUR photos here! -->
+    </div>
+
+</section>
+
+
+   <!-- Gallery Section -->
+  <section id="video_gallery">
+    <h2 class="section-title">Video Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=golden-hour">
+        <img src="./image/golden_hour_2.jpeg" alt="Golden Hour Wedding">
+        <div class="gallery-overlay"><div class="caption">Wedding Highlight Films </div></div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=drone" >
+        <img src="./image/arial_drone.jpg" alt="Drone Cityscape">
+        <div class="gallery-overlay"><div class="caption">Event & Corporate Video</div></div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=studio" >
+        <img src="./image/studio sectionm.jpg" alt="Studio Portrait">
+        <div class="gallery-overlay"><div class="caption">Drone Aerial Footage</div></div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=event" >
+        <img src="./image/event photos.jpg" alt="Event Coverage">
+        <div class="gallery-overlay"><div class="caption">Promo & Storytelling Edits</div></div>
+        </a>
+      </div>
+
+      <!-- <div class="gallery-item">
+        <a href="gallery-detail.html?category=ecommerce" class="gallery-item">
+        <img src="./image/e-commence.jpg" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=graduation" class="gallery-item">
+        <img src="./image/graduation6.JPG" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">Graduation Photography</div></div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a href="gallery-detail.html?category=children" class="gallery-item">
+        <img src="./image/children.jpg" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">Children Photography</div></div>
+        </a>
+      </div> -->
+
+      <!-- <div class="gallery-item">
+        <img src="./image/IMG_0263.JPG" alt="Product Shoot">
+        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
+      </div> -->
+      <!-- Add more of YOUR photos here! -->
+    </div>
+  </section>
+
+
+
   <!-- === New Services Section === -->
   <section id="services">
     <h2 class="section-title">Our Services</h2>
@@ -1246,7 +1384,7 @@
         <ul class="service-list">
           <li><span class="service-check">✔</span> Weddings & Events</li>
           <li><span class="service-check">✔</span> Portrait Sessions</li>
-          <li><span class="service-check">✔</span> Product & Commercial Shoots</li>
+          <li><span class="service-check">✔</span> Commercial Shoots</li>
           <li><span class="service-check">✔</span> Studio & On-Location</li>
         </ul>
         <a href="#photo_gallery" class="btn-quote" style="color:#fff; background:var(--yellow);">View Work</a>
@@ -1272,7 +1410,7 @@
         <h3 class="service-title">Gear Rentals</h3>
         <p class="service-desc">Professional cameras, lenses, drones & lighting — daily/weekly rates.</p>
         <ul class="service-list">
-          <li><span class="service-check">✔</span> Full-Frame Mirrorless Bodies</li>
+          <li><span class="service-check">✔</span> Full-Frame Bodies</li>
           <li><span class="service-check">✔</span> Prime & Zoom Lenses</li>
           <li><span class="service-check">✔</span> DJI Drones & Gimbals</li>
           <li><span class="service-check">✔</span> Lighting Kits & Accessories</li>
@@ -1281,6 +1419,9 @@
       </div>
     </div>
   </section>
+
+
+
 
   
   <!-- About Us Section -->
@@ -1305,7 +1446,7 @@
       </div>
 
       <div class="team-member">
-        <img src="./image/NANAYAW.png" alt="Sarah - Lead Videographer">
+        <img src="./image/NANAYAW.png" alt="Sarah - Lead Videographer">  
         <div class="team-name">Nana Yaw</div>
         <div class="team-role">Lead Videographer</div>
         <p class="team-quote">"Motion tells stories words can't. I love crafting cinematic videos that move hearts and brands alike."</p>
@@ -1374,133 +1515,8 @@
 </section>
 
 
+ 
 
-
-
-
-
-  <!-- Gallery Section -->
-  <section id="photo_gallery">
-    <h2 class="section-title">Photo Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=golden-hour">
-        <img src="./image/golden_hour_2.jpg" alt="Golden Hour Wedding">
-        <div class="gallery-overlay"><div class="caption">Golden Hour Wedding </div></div>
-        </a>
-      </div>
-
-      <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=drone">
-        <img src="./image/arial_drone.jpg" alt="Drone Cityscape">
-        <div class="gallery-overlay"><div class="caption">Drone Aerial </div></div>
-        </a>
-      </div> -->
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=studio">
-        <img src="./image/studio2.jpg" alt="Studio Portrait">
-        <div class="gallery-overlay"><div class="caption">Studio Portrait Session</div></div>
-        </a>
-      </div>
-
-      <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=event">
-        <img src="./image/event photos.jpg" alt="Event Coverage">
-        <div class="gallery-overlay"><div class="caption">Corporate Event Highlight</div></div>
-        </a>
-      </div> -->
-
-      <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=ecommerce">
-        <img src="./image/ECOMMENCE/ECOMMENCE.jpg" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
-        </a>
-      </div> -->
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=graduation">
-        <img src="./image/graduation6.JPG" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">Graduation Photography</div></div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=children" >
-        <img src="./image/children.jpeg" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">Children Photography</div></div>
-        </a>
-      </div>
-
-      <!-- <div class="gallery-item">
-        <img src="./image/IMG_0263.JPG" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
-      </div> -->
-      <!-- Add more of YOUR photos here! -->
-    </div>
-
-
-  </section>
-  <!-- Gallery Section -->
-  <section id="video_gallery">
-    <h2 class="section-title">Video Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=golden-hour">
-        <img src="./image/golden_hour_2.jpg" alt="Golden Hour Wedding">
-        <div class="gallery-overlay"><div class="caption">Wedding Highlight Films </div></div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=drone" >
-        <img src="./image/arial_drone.jpg" alt="Drone Cityscape">
-        <div class="gallery-overlay"><div class="caption">Event & Corporate Video</div></div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=studio" >
-        <img src="./image/studio sectionm.jpg" alt="Studio Portrait">
-        <div class="gallery-overlay"><div class="caption">Drone Aerial Footage</div></div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=event" >
-        <img src="./image/event photos.jpg" alt="Event Coverage">
-        <div class="gallery-overlay"><div class="caption">Promo & Storytelling Edits</div></div>
-        </a>
-      </div>
-
-      <!-- <div class="gallery-item">
-        <a href="gallery-detail.html?category=ecommerce" class="gallery-item">
-        <img src="./image/e-commence.jpg" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=graduation" class="gallery-item">
-        <img src="./image/graduation6.JPG" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">Graduation Photography</div></div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a href="gallery-detail.html?category=children" class="gallery-item">
-        <img src="./image/children.jpg" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">Children Photography</div></div>
-        </a>
-      </div> -->
-
-      <!-- <div class="gallery-item">
-        <img src="./image/IMG_0263.JPG" alt="Product Shoot">
-        <div class="gallery-overlay"><div class="caption">E-commerce Product Photography</div></div>
-      </div> -->
-      <!-- Add more of YOUR photos here! -->
-    </div>
-  </section>
 
   <!-- Contact Section -->
 <section id="contact">
